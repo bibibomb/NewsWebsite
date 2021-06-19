@@ -70,8 +70,6 @@ class NavBar extends React.Component {
                                     />
                                     <span id="navSpan-2">Guardian</span>
                                 </Nav>
-                                
-                            
                         </Navbar.Collapse>
                 </Col>
             </Row>

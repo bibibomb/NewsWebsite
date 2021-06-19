@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "News Website",
+  "name": "Selected New York Times and Guardian news website",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "newsicon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },

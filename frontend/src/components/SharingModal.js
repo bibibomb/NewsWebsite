@@ -72,11 +72,7 @@ function SharingModal(props) {
                                     <EmailIcon size={size} round={true}/>
                                 </EmailShareButton>
                             </Col>
-                            
-                            
-                            
                         </Row>
-                        
                     </div>
                 </Modal.Body>
             </Modal>
