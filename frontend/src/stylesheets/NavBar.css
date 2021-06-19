@@ -1,0 +1,104 @@
+#navBar {
+    background-image: linear-gradient(to right, #152340 , #4060b1);
+    padding: 8px 0px 8px 0px;
+}
+
+#searchBar {
+    margin-left: 15px;
+}
+
+#midPart {
+    padding-left: 0;
+}
+
+.navLink {
+    display: block;
+    padding: 8px;
+    color: darkgray;
+}
+
+.navLink:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.icon1 {
+    margin-top: 5px;
+}
+
+#navSpan-1 {
+    margin: 8px 10px;
+    color: white;
+}
+
+#navSpan-2 {
+    margin: 8px 15px;
+    color: white;
+}
+
+.customTheme2 {
+    padding: 8px !important;
+    border-radius: 5px !important;
+}
+
+@media screen and (max-width: 600px){
+    #reactTipDetail {
+        display: none;
+    }
+    
+    #reactTipFav {
+        display: none;
+    }
+    
+    #reactTipNav {
+        display: none;
+    }
+}
+
+#navSwitch {
+    padding:10px 0 0 0;
+}
+
+
+#col2 {
+    margin-left: 9px;
+}
+
+#linkNav {
+    padding-left: 7px;
+}
+
+.icon1 {
+    margin-left: 7px;
+}
+
+#navSwitch {
+    padding-left: 10px;
+}
+
+#navSpan-2 {
+    margin: 8px 10px;
+}
+
+#navBookmark {
+    padding-left: 0;
+}
+
+#navBookmark2 {
+    padding-left: 0;
+}
+
+@media only screen and (min-width:991px)  {
+    
+    #col1 {
+        margin-right: 0;
+    }
+    
+    #col2 {
+        margin-left: 0;
+    }
+}
+
+
+
+

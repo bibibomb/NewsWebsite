@@ -1,0 +1,33 @@
+
+#searchBarBody {
+    width:17em;
+    marginTop:1px;
+    
+}
+
+
+
+@media screen and (max-width:376px)  {
+    #searchBarBody {
+        width:266px;
+    }
+}
+@media screen and (max-width:350px)  {
+    #searchBarBody {
+        width:214px;
+    }
+}
+@media screen and (max-width:414px) and (min-width: 376px) {
+    #searchBarBody {
+        width:310px;
+    }
+}
+
+@media screen and (max-width:1818px) and (min-width: 1023px) {
+    #searchBarBody {
+        width:280px;
+    }
+}
+
+
+

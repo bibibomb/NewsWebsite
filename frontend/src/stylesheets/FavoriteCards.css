@@ -1,0 +1,41 @@
+#favArticle {
+    box-shadow: 4px 2px 10px rgba(0,0,0,0.4);
+    transition: 0.3s;
+    margin: 10px 15px;
+    border-radius: 4px;
+    text-align: left;
+}
+
+#favArticleBody {
+    margin: 20px 15px;
+}
+
+#favTitle {
+
+}
+
+#imgDiv2 {
+    border: 1px solid #D4D4D4;
+    border-radius: 4px;
+    margin: 15px 0;
+}
+
+.cardLink {
+    color: black;
+}
+
+.cardLink:hover {
+    text-decoration: none;
+    color: black;
+    cursor: default;
+}
+
+.tag {
+    font-size: 0.7em;
+    margin: 0.3em;
+}
+
+.favToast {
+    color: black;
+    background-color: white;
+}
