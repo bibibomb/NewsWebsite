@@ -8,22 +8,19 @@ require("../stylesheets/NewsCard.css")
 
 class NewsCard extends React.Component {
     
-    
     handleClick = () =>{
         window.location.hash = "/article?id=" + this.props.id
     }
     
-    
-    
     render() {
-        // console.log("render newscard")
+        const {src, title, url, description, date, type} = this.props;
         return (
             <Media id="media">
                 <Row id="row">
                     <Col  lg={"auto"} xl={3}>
                         <div id="imgDiv">
                             <img id="mediaImg"
-                                 src={this.props.src}
+                                 src={src}
                                  alt="Generic placeholder"
                             />
                         </div>
@@ -31,21 +28,21 @@ class NewsCard extends React.Component {
                     <Col>
                         <Media.Body id="mediaBody">
                             <h5 className="mediaLink">
-                                    <b onClick={this.handleClick}>{this.props.title}</b>
+                                    <b onClick={this.handleClick}>{title}</b>
                                 <span id="sharingModal">
-                                    <SharingModal title={this.props.title}
-                                                  url={this.props.url}
+                                    <SharingModal title={title}
+                                                  url={url}
                                                   favorite={false}
                                     />
                                 </span>
                             </h5>
-                                <p id="ncDescription" className="mediaLink" onClick={this.handleClick}>
-                                    {this.props.description}
-                                </p>
-                                <div>
-                                    <span id="date1">{this.props.date.slice(0,10)}</span>
-                                    <ColoredTag id="coloredTag" type={this.props.type}/>
-                                </div>
+                            <p id="ncDescription" className="mediaLink" onClick={this.handleClick}>
+                                {description}
+                            </p>
+                            <div>
+                                <span id="date1">{date.slice(0,10)}</span>
+                                <ColoredTag id="coloredTag" type={type}/>
+                            </div>
                         </Media.Body>
                     </Col>
                 </Row>

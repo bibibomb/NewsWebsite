@@ -14,8 +14,6 @@ class CardContent extends React.Component {
     
     componentDidMount() {
         this.getResults()
-        // console.log("cdm " + this.props.news)
-    
     }
     
     static  getDerivedStateFromProps(props,state) {
@@ -26,13 +24,11 @@ class CardContent extends React.Component {
         }
     }
     
-    
     componentDidUpdate(preProps,preState,snapshot) {
         if (preState.flag !== this.state.flag) {
             this.getResults()
         }
     }
-
     
     getResults = () => {
         let url = Constants.BACKEND_URL + '/news/'
@@ -42,55 +38,42 @@ class CardContent extends React.Component {
         } else {
             url = url + this.state.flag + '/'
         }
-        // console.log(url)
         trackPromise(
-            axios.get(url)
-                .then((response) => {
-                    this.setState({newsData: response.data})
-                })
+            axios.get(url).then((response) => {
+                this.setState({newsData: response.data})
+            })
         )
      }
      
     mapResults = () => {
         let mapData
         mapData = this.state.newsData.map(news => {
-            let src = news.image
-            let title = news.title
-            let description = news.description
-            let date = news.date
-            let type = news.type.toLowerCase()
-            let url =  news.url
-            let id = (this.props.news === "nyTimes")? url: news.id
+            const newsInfo = {
+                src: news.image,
+                title: news.title,
+                description: news.description,
+                date: news.date,
+                type: news.type.toLowerCase(),
+                url: news.url,
+            }
+            let id = (this.props.news === "nyTimes")? newsInfo.url: news.id
             return (
                 <NewsCard
                     key={news.id}
-                    id={id}
-                    src={src}
-                    title={title}
-                    description={description}
-                    date={date}
-                    type={type}
-                    url={url}
                     func={this.props.section}
+                    id={id}
+                    {...newsInfo}
                 />
             )
         })
-        // console.log(mapData)
         return mapData
     }
     
-    render()
-    
-    {
-        // console.log("CardContent:" + this.state.flag)
-        // console.log(this.state)
+    render() {
         return (
-            <>
             <div>
                 <p>{this.mapResults()}</p>
             </div>
-
-            </>
         )
     }
 }
