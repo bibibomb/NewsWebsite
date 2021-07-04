@@ -26,20 +26,15 @@ require("../stylesheets/DetailedArticle.css")
 
 class DetailedArticle extends React.Component {
     
-    constructor(props) {
-        super(props);
-        this.state = {
-            id: window.location.hash.slice(13),
-            cardInfo: {},
-            showUp: "show",
-            component: [],
-            collect:this.props.hasCollected
-        }
-        
+    state = {
+        id: window.location.hash.slice(13),
+        cardInfo: {},
+        showUp: "show",
+        component: [],
+        collect:this.props.hasCollected
     }
     
     componentDidMount() {
-        // console.log(this.state.id)
         this.getCardInfo()
         Events.scrollEvent.register('begin', function(to, element) {
             console.log("begin", arguments);
@@ -50,7 +45,7 @@ class DetailedArticle extends React.Component {
         scrollSpy.update();
     }
     
-    componentWillUnmount=()=> {
+    componentWillUnmount = () => {
         Events.scrollEvent.remove('begin');
         Events.scrollEvent.remove('end');
     }
@@ -58,9 +53,6 @@ class DetailedArticle extends React.Component {
     scrollTo = (direction) => {
         let logo = document.getElementsByClassName('arrow')[0];
         let logoTextRectangle = logo.getBoundingClientRect();
-        
-        // console.log(logoTextRectangle)
-    
         if (direction === "down"){
             scroll.scrollTo(logoTextRectangle.top + 190, {
                 duration:500
@@ -70,7 +62,6 @@ class DetailedArticle extends React.Component {
                 duration:200
             });
         }
-        
     }
     
     getCardInfo = () => {
@@ -81,23 +72,21 @@ class DetailedArticle extends React.Component {
             newsType = "nyTimes"
         }
         let url = Constants.BACKEND_URL+"/news/" + newsType + "/article?id=" + this.state.id
-        // console.log(url)
         trackPromise(
-            axios.get(url)
-                .then((response) => {
-                    this.setState({
-                        cardInfo: response.data
-                    })
-                    this.setState({
-                        component: this.buildComponent(this.state.collect,false)
-                    })
-                    this.setState({
-                        showUp: this.shouldShow(),
-                    })
-                    this.setState({
-                        component: this.buildComponent(this.state.collect,false)
-                    })
+            axios.get(url).then((response) => {
+                this.setState({
+                    cardInfo: response.data
                 })
+                this.setState({
+                    component: this.buildComponent(this.state.collect,false)
+                })
+                this.setState({
+                    showUp: this.shouldShow(),
+                })
+                this.setState({
+                    component: this.buildComponent(this.state.collect,false)
+                })
+            })
         )
     }
     
@@ -137,50 +126,51 @@ class DetailedArticle extends React.Component {
             bookmark = <MdBookmark size={25}
                                    color="red"
                                    onClick={this.handleClick}
-                                   key={Date()}
-            />
+                                   key={Date()}/>
         } else {
             bookmark = <MdBookmarkBorder size={25}
                                          color="red"
                                          onClick={this.handleClick}
-                                         key={Date()}
-
-            />
+                                         key={Date()}/>
         }
         if (this.state.showUp !== "notShow"){
             if (clickArrow) {
-                description = <><div>
+                description =
+                    <>
+                        <div>
+                            <p id="desP">
+                                {this.state.cardInfo.description}
+                            </p>
+                        </div>
+                        <div style={{float:"right"}}>
+                            <IoIosArrowUp className="arrow" size={25}  onClick={this.handleClickArrowUp}/>
+                        </div>
+                    </>
+            } else {
+                description =
+                    <>
+                        <div>
+                        <p style={{width: "100%",
+                            display: "-webkit-box",
+                            webkitBoxOrient: "vertical",
+                            webkitLineClamp: "6",
+                            overflow: "hidden"}}
+                           id="desP">
+                            {this.state.cardInfo.description}
+                        </p>
+                        </div>
+                        <div style={{float:"right",display:this.state.showUp}}>
+                            <IoIosArrowDown className="arrow" size={25} onClick={this.handleClickArrowDown}/>
+                        </div>
+                    </>
+            }
+        } else {
+            description =
+                <div>
                     <p id="desP">
                         {this.state.cardInfo.description}
                     </p>
                 </div>
-                    <div style={{float:"right"}}>
-                            <IoIosArrowUp className="arrow" size={25}  onClick={this.handleClickArrowUp}/>
-                        
-                    </div></>
-            } else {
-                description = <><div>
-                    <p style={{width: "100%",
-                        display: "-webkit-box",
-                        webkitBoxOrient: "vertical",
-                        webkitLineClamp: "6",
-                        overflow: "hidden"}}
-                       id="desP"
-                    >
-                        {this.state.cardInfo.description}
-            
-                    </p>
-                </div>
-                    <div style={{float:"right",display:this.state.showUp}}>
-                        <IoIosArrowDown className="arrow" size={25} onClick={this.handleClickArrowDown}/>
-                    </div></>
-            }
-        } else {
-            description = <div>
-                <p id="desP">
-                    {this.state.cardInfo.description}
-                </p>
-            </div>
         }
 
         return (
@@ -251,6 +241,7 @@ class DetailedArticle extends React.Component {
         className:'toastNotify',
         containerId:"detailToaster"
     })
+    
     notifyDel = () => toast("Removing - " + this.state.cardInfo.title,{
         position: "top-center",
         autoClose: 3000,
@@ -290,15 +281,13 @@ class DetailedArticle extends React.Component {
     render() {
         return (
             <>
-            <div>
-                {this.state.component}
-            </div>
+                <div>
+                    {this.state.component}
+                </div>
                 <LoadingIndicator />
-</>
-                )
+            </>
+        )
     }
 }
-
-
 
 export default DetailedArticle

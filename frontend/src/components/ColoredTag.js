@@ -1,17 +1,14 @@
 import React from 'react'
 
 class ColoredTag extends React.Component{
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            backgroundColor: "",
-            color: "",
-            fontSize: (this.props.font === undefined)? "1em": this.props.font,
-            borderRadius: "4px",
-            float: "right",
-            margin: (this.props.margin === undefined)? "": this.props.margin
-        }
+
+    state = {
+        backgroundColor: "",
+        color: "",
+        fontSize: (this.props.font === undefined)? "1em": this.props.font,
+        borderRadius: "4px",
+        float: "right",
+        margin: (this.props.margin === undefined)? "": this.props.margin
     }
     
     componentDidMount() {
@@ -48,7 +45,6 @@ class ColoredTag extends React.Component{
             </span>
         )
     }
-    
 }
 
 export default ColoredTag
