@@ -11,17 +11,13 @@ import LoadingIndicator from "./LodingIndicator";
 
 class App extends React.Component{
     
-    constructor(props){
-        super(props)
-        this.state = {
-            checked:(localStorage.getItem("checked") === "false" ||
-                localStorage.getItem("checked") === null)? "false":"true",
-            news: (localStorage.getItem("checked") == "false" ||
-                localStorage.getItem("checked") == null)?"nyTimes":"guardian",
-            routeName:  window.location.hash,
-            section:""
-        }
-        console.log("version: 0.2.0")
+    state = {
+        checked:(localStorage.getItem("checked") === "false" ||
+            localStorage.getItem("checked") === null)? "false":"true",
+        news: (localStorage.getItem("checked") == "false" ||
+            localStorage.getItem("checked") == null)?"nyTimes":"guardian",
+        routeName:  window.location.hash,
+        section:""
     }
     
     handleChangeNews = () => {
@@ -29,18 +25,15 @@ class App extends React.Component{
             let checked = (preState.checked === "true")? "false":"true"
             localStorage.setItem("checked", checked)
             return{
-                news : ((preState.news === "nyTimes")? "guardian":"nyTimes"),
-                checked: ((preState.checked === "false")? "true":"false"),
+                    news : ((preState.news === "nyTimes")? "guardian":"nyTimes"),
+                    checked: ((preState.checked === "false")? "true":"false"),
+                }
             }
-        }
-        
         )
     };
     
     componentDidMount() {
         window.addEventListener("hashchange", ()=>{
-            // console.log("change route")
-            // console.log(window.location.hash)
             this.setState({
                 routeName: window.location.hash
             })
@@ -56,7 +49,6 @@ class App extends React.Component{
     render() {
         let content
         if (this.state.routeName === "#/") {
-            // console.log("/#/ render")
             content =
                 <>
                     <NavBar switchFunc={this.handleChangeNews}
@@ -70,8 +62,6 @@ class App extends React.Component{
                     />
                 </>
         } else if (this.state.routeName.slice(0,11) === "#/favorites") {
-            // console.log("/#/favorites render")
-    
             content =
                 <>
                     <NavBarFavorite news={this.state.news}
@@ -82,14 +72,11 @@ class App extends React.Component{
                     />
                 </>
         } else if (this.state.routeName.slice(0,8) === "#/search") {
-            // console.log("/#/search render")
             content =
                 <>
                     <NavBarDetail news={this.state.news}
                                   route={this.state.routeName}
                                   key={this.state.routeName}
-
-
                     />
                     <SearchContent
                         key={Date.now()}
@@ -97,13 +84,10 @@ class App extends React.Component{
                     />
                 </>
         } else if (this.state.routeName.slice(0,9) === "#/article") {
-            // console.log("/#/article render")
             content =
                 <>
                     <NavBarDetail news={this.state.news}
                                   route={this.state.routeName}
-
-
                     />
                     <DetailedArticle hasCollected={localStorage.hasOwnProperty(this.state.routeName.slice(13))}
                                      key={Date.now()}
@@ -112,15 +96,12 @@ class App extends React.Component{
                     />
                 </>
         } else {
-            // console.log("/#/section render")
-    
             content =
                 <>
                     <NavBar switchFunc={this.handleChangeNews}
                             checked={this.state.checked}
                             news={this.state.news}
                             route={this.state.routeName}
-
                     />
                     <CardContent
                                  key={Date.now()}
@@ -141,5 +122,4 @@ class App extends React.Component{
     }
 }
 
-// export default withRouter(App);
 export default App;
